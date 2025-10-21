@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>門市資訊 - 普門茶品</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+         
+        @font-face {
+            font-family: 'MyFont';
+            src: url("Iansui-Regular.ttf") format("truetype");   /*芫荽字體*/
+            }
+
+        body {
+            font-family: 'MyFont', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 導航列 */
+        nav {
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* 頁面標題 */
+        .page-header {
+            background: linear-gradient(rgba(44, 95, 45, 0.85), rgba(44, 95, 45, 0.85)),
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200') center/cover;
+            padding: 5rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+        }
+
+        /* 容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 門市資訊區塊 */
+        .store-info-section {
+            padding: 5rem 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .info-card h2 {
+            color: #2c5f2d;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .info-item:hover {
+            background: #f0f8e8;
+        }
+
+        .info-icon {
+            font-size: 1.8rem;
+            min-width: 35px;
+        }
+
+        .info-content h3 {
+            color: #2c5f2d;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .info-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-content a {
+            color: #97bc62;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .info-content a:hover {
+            color: #2c5f2d;
+        }
+
+        /* 營業時間表 */
+        .hours-card {
+            grid-column: 1 / -1;
+        }
+
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .hours-table th,
+        .hours-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .hours-table th {
+            background: #2c5f2d;
+            color: white;
+            font-weight: 600;
+        }
+
+        .hours-table tr:hover {
+            background: #f0f8e8;
+        }
+
+        .closed {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .open {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        /* 地圖區塊 */
+        .map-section {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c5f2d;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #97bc62;
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 450px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-placeholder {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .map-placeholder h3 {
+            color: #2c5f2d;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* 交通方式 */
+        .transport-section {
+            padding: 5rem 0;
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .transport-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .transport-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .transport-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .transport-card h3 {
+            color: #2c5f2d;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .transport-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 聯絡表單 */
+        .contact-section {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h2 {
+            color: #2c5f2d;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #2c5f2d;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #97bc62;
+            box-shadow: 0 0 0 3px rgba(151, 188, 98, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #c3e6cb;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* 社群連結 */
+        .social-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .social-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .social-card h3 {
+            color: #2c5f2d;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #f0f8e8;
+            transform: translateX(5px);
+        }
+
+        .social-link-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .social-link-info h4 {
+            color: #2c5f2d;
+            margin-bottom: 0.3rem;
+        }
+
+        .social-link-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* CTA區塊 */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: #2c5f2d;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        /* 頁尾 */
+        footer {
+            background: #2c5f2d;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #97bc62;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .info-grid,
+            .transport-grid,
+            .contact-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hours-card {
+                grid-column: 1;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航列 -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">🍵 普門茶品</a>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="about.html">關於我們</a></li>
+                <li><a href="products.html">產品</a></li>
+                <li><a href="store.html">門市資訊</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 頁面標題 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>門市資訊與聯絡方式</h1>
+            <p>歡迎蒞臨普門茶品 · 品味健康素食</p>
+        </div>
+    </section>
+
+    <!-- 門市資訊 -->
+    <section class="store-info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h2>📍 門市資訊</h2>
+                    <div class="info-item">
+                        <div class="info-icon">🏠</div>
+                        <div class="info-content">
+                            <h3>門市地址</h3>
+                            <p>新北市三峽區國際二街11號</p>
+                            <p style="font-size: 0.9rem; color: #999;">三峽北大特區</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h3>聯絡電話</h3>
+                            <p><a href="tel:02-8672-0599">02-8672-0599</a></p>
+                            <p style="font-size: 0.9rem; color: #999;">歡迎來電預約訂位</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💺</div>
+                        <div class="info-content">
+                            <h3>座位數量</h3>
+                            <p>約40個座位</p>
+                            <p style="font-size: 0.9rem; color: #999;">建議假日提前預約</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h2>💳 服務項目</h2>
+                    <div class="info-item">
+                        <div class="info-icon">🍽️</div>
+                        <div class="info-content">
+                            <h3>內用服務</h3>
+                            <p>提供舒適用餐環境</p>
+                            <p style="font-size: 0.9rem; color: #999;">大型聚餐請提前預約</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🥡</div>
+                        <div class="info-content">
+                            <h3>外帶服務</h3>
+                            <p>便當外帶享95折優惠</p>
+                            <p style="font-size: 0.9rem; color: #999;">建議提前電話預訂</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💰</div>
+                        <div class="info-content">
+                            <h3>付款方式</h3>
+                            <p>現金 / 信用卡 / 行動支付</p>
+                            <p style="font-size: 0.9rem; color: #999;">Line Pay、街口支付</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card hours-card">
+                    <h2>⏰ 營業時間</h2>
+                    <table class="hours-table">
+                        <thead>
+                            <tr>
+                                <th>星期</th>
+                                <th>午餐時段</th>
+                                <th>晚餐時段</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>週一</strong></td>
+                                <td colspan="2" class="closed">公休日</td>
+                            </tr>
+                            <tr>
+                                <td><strong>週二</strong></td>
+                                <td class="open">11:30 - 14:00</td>
+                                <td class="open">17:30 - 20:00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>週三</strong></td>
+                                <td class="open">11:30 - 14:00</td>
+                                <td class="open">17:30 - 20:00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>週四</strong></td>
+                                <td class="open">11:30 - 14:00</td>
+                                <td class="open">17:30 - 20:00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>週五</strong></td>
+                                <td class="open">11:30 - 14:00</td>
+                                <td class="open">17:30 - 20:00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>週六</strong></td>
+                                <td class="open">11:30 - 14:00</td>
+                                <td class="open">17:30 - 20:00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>週日</strong></td>
+                                <td class="open">11:30 - 14:00</td>
+                                <td class="open">17:30 - 20:00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 1rem; color: #e74c3c; font-weight: 500; text-align: center;">
+                        ⚠️ 最後點餐時間為閉店前30分鐘
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地圖區塊 -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">交通位置</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <h3>📍 新北市三峽區國際二街11號</h3>
+                    <p>位於三峽北大特區，鄰近台北大學</p>
+                    <p style="margin-top: 1rem; color: #97bc62;">
+                        建議使用 Google Maps 搜尋「普門茶品」獲取詳細路線
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 交通方式 -->
+    <section class="transport-section">
+        <div class="container">
+            <h2 class="section-title">交通方式</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <div class="transport-icon">🚗</div>
+                    <h3>自行開車</h3>
+                    <p><strong>國道3號：</strong></p>
+                    <p>三鶯交流道下 → 往三峽方向 → 大義路 → 國際二街</p>
+                    <p style="margin-top: 1rem;"><strong>停車資訊：</strong></p>
+                    <p>附近有路邊停車格及公有停車場</p>
+                </div>
+
+                <div class="transport-card">
+                    <div class="transport-icon">🚌</div>
+                    <h3>公車</h3>
+                    <p><strong>搭乘公車：</strong></p>
+                    <p>275、812、916、939、981<br>藍43、藍45</p>
+                    <p style="margin-top: 1rem;">於「台北大學」站下車<br>步行約5-8分鐘</p>
+                </div>
+
+                <div class="transport-card">
+                    <div class="transport-icon">🚇</div>
+                    <h3>捷運轉乘</h3>
+                    <p><strong>板南線：</strong></p>
+                    <p>永寧站 → 轉乘公車275、812、916</p>
+                    <p style="margin-top: 1rem;"><strong>環狀線：</strong></p>
+                    <p>十四張站 → 轉乘公車939</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡表單與社群 -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">聯絡我們</h2>
+            <div class="contact-grid">
+                <!-- 聯絡表單 -->
+                <div class="contact-form">
+                    <h2>📝 線上留言</h2>
+                    <div id="successMessage" class="success-message">
+                        感謝您的留言！我們會盡快回覆您。
+                    </div>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">姓名 *</label>
+                            <input type="text" id="name" name="name" required placeholder="請輸入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">聯絡電話 *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="請輸入您的聯絡電話">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">詢問類型 *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">請選擇</option>
+                                <option value="reservation">訂位預約</option>
+                                <option value="menu">菜單諮詢</option>
+                                <option value="catering">便當訂購</option>
+                                <option value="gift">禮盒訂購</option>
+                                <option value="feedback">意見回饋</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">留言內容 *</label>
+                            <textarea id="message" name="message" required placeholder="請輸入您的留言內容..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">送出留言</button>
+                    </form>
+                </div>
+
+                <!-- 社群媒體 -->
+                <div class="social-info">
+                    <div class="social-card">
+                        <h3>💬 社群媒體</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <div class="social-link-icon">📘</div>
+                                <div class="social-link-info">
+                                    <h4>Facebook 粉絲專頁</h4>
+                                    <p>追蹤我們獲取最新優惠資訊</p>
+                                </div>
+                            </a>
+                            <a href="#" class="social-link">
+                                <div class="social-link-icon">📷</div>
+                                <div class="social-link-info">
+                                    <h4>Instagram</h4>
+                                    <p>看看我們的美食照片</p>
+                                </div>
+                            </a>
+                            <a href="#" class="social-link">
+                                <div class="social-link-icon">💚</div>
+                                <div class="social-link-info">
+                                    <h4>LINE 官方帳號</h4>
+                                    <p>加入官方帳號即時訊息不漏接</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="social-card">
+                        <h3>📞 快速聯絡</h3>
+                        <div class="social-links">
+                            <a href="tel:02-8672-0599" class="social-link">
+                                <div class="social-link-icon">📞</div>
+                                <div class="social-link-info">
+                                    <h4>電話預約</h4>
+                                    <p>02-8672-0599</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA區塊 -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>歡迎預約訂位</h2>
+                <p>享受健康美味的素食饗宴，從預約開始</p>
+                <div class="cta-buttons">
+                    <a href="tel:02-8672-0599" class="btn">📞 立即來電</a>
+                    <a href="products.html" class="btn">📖 查看菜單</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>普門茶品</h3>
+                    <p>品茗素食,養生健康</p>
+                    <p>讓每一餐都成為心靈的饗宴</p>
+                </div>
+                <div class="footer-section">
+                    <h3>聯絡資訊</h3>
+                    <p>📍 新北市三峽區國際二街11號</p>
+                    <p>📞 02-8672-0599</p>
+                    <p>⏰ 週二至週日 11:30-14:00、17:30-20:00</p>
+                    <p>🚫 週一公休</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速連結</h3>
+                    <a href="index.html">首頁</a>
+                    <a href="about.html">關於我們</a>
+                    <a href="products.html">產品菜單</a>
+                    <a href="store.html">門市資訊</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 普門茶品 Pumen Tea. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // 顯示成功訊息
+            document.getElementById('successMessage').classList.add('show');
+            
+            // 清空表單
+            document.getElementById('contactForm').reset();
+            
+            // 3秒後隱藏訊息
+            setTimeout(() => {
+                document.getElementById('successMessage').classList.remove('show');
+            }, 3000);
+            
+            // 滾動到訊息位置
+            document.getElementById('successMessage').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'nearest' 
+            });
+        }
+    </script>
+</body>
+</html>

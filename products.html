@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品菜單 - 普門茶品</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+         @font-face {
+            font-family: 'MyFont';
+            src: url("Iansui-Regular.ttf") format("truetype");   /*芫荽字體*/
+            }
+
+        body {
+            font-family: 'MyFont', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+        }
+
+        /* 導航列 */
+        nav {
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* 頁面標題 */
+        .page-header {
+            background: linear-gradient(rgba(44, 95, 45, 0.85), rgba(44, 95, 45, 0.85)),
+                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200') center/cover;
+            padding: 5rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+        }
+
+        /* 容器 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 菜單區塊 */
+        .menu-section {
+            padding: 4rem 0;
+        }
+
+        .category-section {
+            background: white;
+            margin-bottom: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+        }
+
+        .category-header h2 {
+            font-size: 2rem;
+        }
+
+        .category-header p {
+            opacity: 0.95;
+            font-size: 1rem;
+        }
+
+        /* 特色圖片區 */
+        .featured-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .featured-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .featured-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* 菜單項目 */
+        .menu-content {
+            padding: 2rem;
+        }
+
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #e8e8e8;
+            transition: all 0.3s;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:hover {
+            background: #f9f9f9;
+            padding-left: 1.5rem;
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item-name {
+            color: #2c5f2d;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .menu-item-desc {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .menu-item-price {
+            color: #97bc62;
+            font-size: 1.3rem;
+            font-weight: bold;
+            white-space: nowrap;
+            margin-left: 2rem;
+        }
+
+        .menu-badge {
+            background: #97bc62;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .menu-badge.vegan {
+            background: #27ae60;
+        }
+
+        .menu-badge.popular {
+            background: #e67e22;
+        }
+
+        /* 分隔線 */
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #97bc62, transparent);
+            margin: 2rem 0;
+        }
+
+        /* 備註區塊 */
+        .menu-note {
+            background: #f0f8e8;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            border-left: 4px solid #97bc62;
+        }
+
+        .menu-note h4 {
+            color: #2c5f2d;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .menu-note p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* 套餐說明 */
+        .set-info {
+            background: #fff9e6;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border: 2px dashed #f39c12;
+        }
+
+        .set-info h4 {
+            color: #d68910;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .set-info ul {
+            list-style: none;
+            padding-left: 0;
+            color: #666;
+        }
+
+        .set-info li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .set-info li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        /* 禮盒區塊 */
+        .gift-banner {
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .gift-banner h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .gift-banner p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .gift-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .gift-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .gift-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gift-item p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gift-item .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .gift-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: #2c5f2d;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .gift-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        /* 頁尾 */
+        footer {
+            background: #2c5f2d;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #97bc62;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .featured-images,
+            .gift-items,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .menu-item-price {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航列 -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">🍵 普門茶品</a>
+            
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="about.html">關於我們</a></li>
+                <li><a href="products.html">產品</a></li>
+                <li><a href="store.html">門市資訊</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 頁面標題 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>產品菜單</h1>
+            <p>精選茶品 · 美味素食 · 用心烹調</p>
+        </div>
+    </section>
+
+    <!-- 菜單區塊 -->
+    <section class="menu-section">
+        <div class="container">
+            
+            <!-- 茶品系列 -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🍵</div>
+                    <div>
+                        <h2>茶品系列</h2>
+                        <p>嚴選台灣優質茶葉，每一杯都是職人用心沖泡</p>
+                    </div>
+                </div>
+                <div class="featured-images">
+                    <div class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400" alt="茶品">
+                    </div>
+                    <div class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=400" alt="茶品">
+                    </div>
+                    <div class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?w=400" alt="茶品">
+                    </div>
+                </div>
+                <div class="menu-content">
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    阿里山高山茶
+                                    <span class="menu-badge popular">人氣</span>
+                                </div>
+                                <div class="menu-item-desc">來自海拔1200公尺的阿里山茶區，茶湯清香甘甜，回甘持久</div>
+                            </div>
+                            <div class="menu-item-price">$120</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">凍頂烏龍茶</div>
+                                <div class="menu-item-desc">鹿谷凍頂山特產，茶香濃郁，口感醇厚</div>
+                            </div>
+                            <div class="menu-item-price">$100</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">日月潭紅茶</div>
+                                <div class="menu-item-desc">魚池鄉日月潭紅茶，茶色紅潤，滋味甘醇</div>
+                            </div>
+                            <div class="menu-item-price">$90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">碧螺春綠茶</div>
+                                <div class="menu-item-desc">三峽特產碧螺春，茶香清新，滋味甘甜</div>
+                            </div>
+                            <div class="menu-item-price">$80</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">茉莉花茶</div>
+                                <div class="menu-item-desc">綠茶與茉莉花完美結合，花香四溢</div>
+                            </div>
+                            <div class="menu-item-price">$85</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">玫瑰花草茶</div>
+                                <div class="menu-item-desc">精選玫瑰花瓣，搭配多種花草，養顏美容</div>
+                            </div>
+                            <div class="menu-item-price">$95</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">菊花普洱茶</div>
+                                <div class="menu-item-desc">雲南普洱搭配杭菊，溫潤順口，去油解膩</div>
+                            </div>
+                            <div class="menu-item-price">$90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">蜜香紅茶</div>
+                                <div class="menu-item-desc">台東紅烏龍，帶有天然蜜香，甜潤好喝</div>
+                            </div>
+                            <div class="menu-item-price">$95</div>
+                        </div>
+                    </div>
+                    <div class="menu-note">
+                        <h4>☕ 茶品說明</h4>
+                        <p>所有茶品均可選擇熱飲或冷飲（玫瑰花草茶僅提供熱飲）｜不加糖不加冰塊，呈現茶葉最純粹的風味</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主餐套餐 -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🍽️</div>
+                    <div>
+                        <h2>主餐套餐</h2>
+                        <p>精緻套餐，包含主菜、配菜、湯品與茶飲</p>
+                    </div>
+                </div>
+                <div class="menu-content">
+                    <div class="set-info">
+                        <h4>🎁 套餐內容</h4>
+                        <ul>
+                            <li>主菜一道</li>
+                            <li>當日配菜三樣</li>
+                            <li>季節時蔬</li>
+                            <li>養生湯品</li>
+                            <li>白飯（可續）</li>
+                            <li>餐後茶飲</li>
+                        </ul>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    普門套餐
+                                    <span class="menu-badge popular">招牌</span>
+                                    <span class="menu-badge">蛋素</span>
+                                </div>
+                                <div class="menu-item-desc">豐富配菜、營養均衡，本店招牌套餐</div>
+                            </div>
+                            <div class="menu-item-price">$280</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    精進套餐
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">全素料理，菜色豐富，健康美味</div>
+                            </div>
+                            <div class="menu-item-price">$260</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    養生套餐
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">加入養生食材，適合注重健康的您</div>
+                            </div>
+                            <div class="menu-item-price">$300</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    素食小火鍋
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">蔬菜、菇類、豆製品豐富，湯頭鮮美</div>
+                            </div>
+                            <div class="menu-item-price">$250</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 麵食飯食 -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🍜</div>
+                    <div>
+                        <h2>麵食飯食</h2>
+                        <p>各式麵食與飯類，口味豐富多樣</p>
+                    </div>
+                </div>
+                <div class="menu-content">
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    香濃咖哩麵
+                                    <span class="menu-badge popular">熱賣</span>
+                                    <span class="menu-badge">蛋素</span>
+                                </div>
+                                <div class="menu-item-desc">濃郁咖哩湯頭，Q彈麵條，搭配多種蔬菜</div>
+                            </div>
+                            <div class="menu-item-price">$180</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    麻油麵線
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">純正黑麻油，薑片提香，溫暖滋補</div>
+                            </div>
+                            <div class="menu-item-price">$150</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    蔬菜拉麵
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">日式風味，清爽湯頭，豐富蔬菜</div>
+                            </div>
+                            <div class="menu-item-price">$170</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    什錦炒麵
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">多種蔬菜與菇類，麵條炒得香Q</div>
+                            </div>
+                            <div class="menu-item-price">$165</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    茄汁義大利麵
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">新鮮番茄熬煮，酸甜開胃</div>
+                            </div>
+                            <div class="menu-item-price">$175</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    青醬義大利麵
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">羅勒青醬，香氣濃郁</div>
+                            </div>
+                            <div class="menu-item-price">$180</div>
+                        </div>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    素香炒飯
+                                    <span class="menu-badge">蛋素</span>
+                                </div>
+                                <div class="menu-item-desc">粒粒分明，加入多種時蔬與素料</div>
+                            </div>
+                            <div class="menu-item-price">$160</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    素燥飯
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">香濃素燥淋在白飯上，經典台式風味</div>
+                            </div>
+                            <div class="menu-item-price">$120</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    素咖哩飯
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">濃郁咖哩搭配蔬菜，香氣四溢</div>
+                            </div>
+                            <div class="menu-item-price">$165</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    養生粥品
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">多種穀物熬煮，清淡養生</div>
+                            </div>
+                            <div class="menu-item-price">$130</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 點心甜品 -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🥟</div>
+                    <div>
+                        <h2>點心甜品</h2>
+                        <p>精緻小點與甜品，午茶時光的最佳選擇</p>
+                    </div>
+                </div>
+                <div class="menu-content">
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    素食春捲 (2入)
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">酥脆外皮，豐富內餡</div>
+                            </div>
+                            <div class="menu-item-price">$80</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    手工水餃 (10顆)
+                                    <span class="menu-badge">蛋素</span>
+                                </div>
+                                <div class="menu-item-desc">皮薄餡多，蔬菜鮮甜</div>
+                            </div>
+                            <div class="menu-item-price">$90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    素蒸餃 (8顆)
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">清蒸健康，原味呈現</div>
+                            </div>
+                            <div class="menu-item-price">$85</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    炸豆腐
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
+                                <div class="menu-item-desc">外酥內嫩，搭配特製沾醬</div>
+                            </div>
+                            <div class="menu-item-price">$70</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-info">
+                                <div class="menu-item-name">
+                                    涼拌小菜
+                                    <span class="menu-badge vegan">全素</span>
+                                </div>
