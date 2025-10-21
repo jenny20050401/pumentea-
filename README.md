@@ -23,4 +23,4 @@
 
 ## 線上預覽
 
-網站連結：[https://你的帳號.github.io/pumen-tea/](https://你的帳號.github.io/pumen-tea/)
+網站連結：[https://pumentea.vercel.app/](https://pumentea.vercel.app/)
