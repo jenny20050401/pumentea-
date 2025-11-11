@@ -402,6 +402,18 @@
                 grid-template-columns: 1fr;
             }
         }
+        .value-icon img {
+            /* 將寬高設定為您預期的表情符號大小，這裡以 40px 為例 */
+            width: 40px; 
+            height: 40px; 
+            
+            /* 2. 保持圖片比例並確保在容器內完整顯示 */
+            object-fit: contain; 
+            
+            /* 3. 確保圖片居中（如果 value-icon 容器有設定 text-align: center） */
+            display: block; 
+            margin: 0 auto; 
+        }
     </style>
 </head>
 <body>
@@ -453,17 +465,23 @@
             <h2 class="section-title">我們的特色</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🌿</div>
+                    <div class="feature-icon">
+                        <img src="lettuce.png" alt="全素蛋素圖示">
+                    </div>
                     <h3>全素蛋素</h3>
                     <p>提供全素與蛋素選擇，使用天然食材，讓您吃得美味、安心又健康。</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🍵</div>
+                    <div class="feature-icon">
+                        <img src="mug-hot.png" alt="精選茶品圖示">
+                    </div>
                     <h3>精選茶品</h3>
                     <p>嚴選台灣優質茶葉，從綠茶、烏龍到紅茶，每一款都經過精心挑選與沖泡。</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🏮</div>
+                    <div class="feature-icon">
+                        <img src="chair.png" alt="舒適環境圖示">
+                    </div>
                     <h3>舒適環境</h3>
                     <p>典雅寧靜的用餐空間，讓您在品茗用餐的同時，享受心靈的放鬆與沉澱。</p>
                 </div>
