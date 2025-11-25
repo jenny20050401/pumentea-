@@ -1,0 +1,11 @@
+# 忽略 Python 虛擬環境
+venv/
+*.venv/
+
+# 忽略 Python 暫存檔
+__pycache__/
+*.pyc
+
+# 忽略使用者上傳的資料與向量資料庫
+/data/
+/db/

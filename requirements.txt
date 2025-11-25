@@ -1,0 +1,11 @@
+streamlit
+langchain
+langchain-community
+langchain-core
+chromadb
+pypdf
+python-docx
+unstructured
+sentence-transformers
+ollama
+beautifulsoup4

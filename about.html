@@ -5,25 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於我們 - 普門茶品</title>
     <style>
+        /* === 1. 顏色變數與基礎設定 (維持一致) === */
+        :root {
+            --color-primary: #6a8c7b;   /* 主綠色：柔和、質感 */
+            --color-secondary: #a7b7a7; /* 輔助綠：淺灰綠 */
+            --color-accent: #d4a974;    /* 強調色：溫暖米棕色 */
+            --color-dark: #2c3e50;      /* 深色文字/標題 */
+            --color-light-text: #666;   /* 次要文字 */
+            --color-background: #fdfdfd; /* 輕微偏暖的背景色 */
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-         @font-face {
+
+        @font-face {
             font-family: 'MyFont';
-            src: url("Iansui-Regular.ttf") format("truetype");   /*芫荽字體*/
+            src: url("Iansui-Regular.ttf") format("truetype");   /*芫荽字體*/
             }
 
         body {
             font-family: 'MyFont', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            line-height: 1.7; /* 增加行高 */
+            color: var(--color-dark);
+            background-color: var(--color-background);
         }
 
         /* 導航列 */
         nav {
-            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            background: var(--color-primary); 
             padding: 1rem 0;
             position: sticky;
             top: 0;
@@ -66,13 +78,20 @@
             background: rgba(255,255,255,0.2);
         }
 
-        /* 頁面標題 */
+        /* 頁面標題 - **使用外部圖片進行測試** */
         .page-header {
-            background: linear-gradient(rgba(44, 95, 45, 0.85), rgba(44, 95, 45, 0.85)),
-                        url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200') center/cover;
+            /* 設置圖片和遮罩 */
+            background-image: linear-gradient(rgba(106, 140, 123, 0.85), rgba(106, 140, 123, 0.85)),
+                               url('茶具.jpg'); 
+            /* 設置圖片重複、位置和大小 */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
             padding: 5rem 0;
             text-align: center;
             color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
         }
 
         .page-header h1 {
@@ -113,13 +132,13 @@
         }
 
         .story-text h2 {
-            color: #2c5f2d;
+            color: var(--color-primary); 
             font-size: 2rem;
             margin-bottom: 1.5rem;
         }
 
         .story-text p {
-            color: #666;
+            color: var(--color-light-text);
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 1rem;
@@ -140,13 +159,13 @@
         /* 理念區塊 */
         .values-section {
             padding: 5rem 0;
-            background: #f9f9f9;
+            background: #f4f4f4; 
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            color: #2c5f2d;
+            color: var(--color-dark); 
             margin-bottom: 3rem;
             position: relative;
             padding-bottom: 1rem;
@@ -160,7 +179,7 @@
             transform: translateX(-50%);
             width: 100px;
             height: 3px;
-            background: #97bc62;
+            background: var(--color-primary); 
         }
 
         .values-grid {
@@ -174,13 +193,13 @@
             padding: 2.5rem;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
             transition: all 0.3s;
         }
 
         .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .value-icon {
@@ -188,14 +207,22 @@
             margin-bottom: 1rem;
         }
 
+        .value-icon img {
+            width: 50px; 
+            height: 50px; 
+            object-fit: contain; 
+            display: block; 
+            margin: 0 auto; 
+        }
+
         .value-card h3 {
-            color: #2c5f2d;
+            color: var(--color-primary); 
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
         .value-card p {
-            color: #666;
+            color: var(--color-light-text);
             line-height: 1.6;
         }
 
@@ -208,7 +235,7 @@
             text-align: center;
             max-width: 800px;
             margin: 0 auto 3rem;
-            color: #666;
+            color: var(--color-light-text);
             font-size: 1.1rem;
             line-height: 1.8;
         }
@@ -216,7 +243,7 @@
         /* 環境展示 */
         .environment-section {
             padding: 5rem 0;
-            background: #f9f9f9;
+            background: var(--color-background); 
         }
 
         .environment-grid {
@@ -249,12 +276,12 @@
         }
 
         .environment-info h3 {
-            color: #2c5f2d;
+            color: var(--color-primary);
             margin-bottom: 0.5rem;
         }
 
         .environment-info p {
-            color: #666;
+            color: var(--color-light-text);
         }
 
         /* 時間軸 */
@@ -275,7 +302,7 @@
             transform: translateX(-50%);
             width: 2px;
             height: 100%;
-            background: #97bc62;
+            background: var(--color-secondary); 
         }
 
         .timeline-item {
@@ -302,19 +329,19 @@
         }
 
         .timeline-date {
-            color: #97bc62;
+            color: var(--color-accent); 
             font-weight: bold;
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
         }
 
         .timeline-content h3 {
-            color: #2c5f2d;
+            color: var(--color-dark);
             margin-bottom: 0.5rem;
         }
 
         .timeline-content p {
-            color: #666;
+            color: var(--color-light-text);
         }
 
         .timeline-dot {
@@ -322,10 +349,10 @@
             top: 0;
             width: 20px;
             height: 20px;
-            background: #97bc62;
+            background: var(--color-accent); 
             border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 0 0 4px #97bc62;
+            border: 4px solid var(--color-background); 
+            box-shadow: 0 0 0 4px var(--color-accent);
         }
 
         .timeline-item:nth-child(odd) .timeline-dot {
@@ -338,7 +365,7 @@
 
         /* 頁尾 */
         footer {
-            background: #2c5f2d;
+            background: var(--color-dark); 
             color: white;
             padding: 3rem 0 1rem;
         }
@@ -352,11 +379,11 @@
 
         .footer-section h3 {
             margin-bottom: 1rem;
-            color: #97bc62;
+            color: var(--color-accent); 
         }
 
         .footer-section p, .footer-section a {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
             display: block;
             margin-bottom: 0.5rem;
@@ -370,10 +397,10 @@
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.5);
         }
 
-        /* 響應式設計 */
+        /* 響應式設計 (維持不變) */
         @media (max-width: 768px) {
             nav ul {
                 flex-direction: column;
@@ -410,23 +437,26 @@
                 right: auto;
             }
         }
-
-        .value-icon img {
-            /* 將寬高設定為您預期的表情符號大小，這裡以 40px 為例 */
-            width: 40px; 
-            height: 40px; 
+        
+        /* === 2. Dialogflow Messenger 樣式覆寫 (與首頁一致) === */
+        df-messenger {
+            z-index: 9999;
+            position: fixed;
             
-            /* 2. 保持圖片比例並確保在容器內完整顯示 */
-            object-fit: contain; 
+            --df-messenger-primary-color: var(--color-accent); 
+            --df-messenger-chat-background: var(--color-background); 
+            --df-messenger-message-user-background: var(--color-secondary); 
+            --df-messenger-message-bot-background: #fff; 
+            --df-messenger-font-color: var(--color-dark);
+            --df-messenger-font-family: 'MyFont', sans-serif;
             
-            /* 3. 確保圖片居中（如果 value-icon 容器有設定 text-align: center） */
-            display: block; 
-            margin: 0 auto; 
+            bottom: 30px;
+            right: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
         }
     </style>
 </head>
 <body>
-    <!-- 導航列 -->
     <nav>
         <div class="container">
             <a href="index.html" class="logo">🍵 普門茶品</a>
@@ -439,7 +469,6 @@
         </div>
     </nav>
 
-    <!-- 頁面標題 -->
     <section class="page-header">
         <div class="container">
             <h1>關於普門茶品</h1>
@@ -447,15 +476,13 @@
         </div>
     </section>
 
-    <!-- 品牌故事 -->
     <section class="story-section">
         <div class="container">
             <div class="story-content">
                 <div class="story-text">
-                    <h2>🌱 我們的故事</h2>
+                    <h2>我們的故事</h2>
                     <p>普門茶品創立於三峽北大特區,秉持著「以茶會友,以素養生」的理念,致力於提供健康美味的素食餐點與精緻茶品。</p>
                     <p>我們相信,飲食不僅是滿足口腹之慾,更是一種生活態度與心靈修養。透過精選的食材與用心的烹調,讓每一位來訪的賓客都能在品茗用餐中,感受到身心的放鬆與愉悅。</p>
-                    <p>在這裡,沒有繁複的調味,只有食材最天然的美味;沒有喧囂的氛圍,只有寧靜舒適的用餐環境。我們期待與您分享這份對健康飲食的堅持與熱愛。</p>
                 </div>
                 <div class="story-image">
                     <img src="店內.webp" alt="品牌故事">
@@ -464,10 +491,9 @@
 
             <div class="story-content reverse">
                 <div class="story-text">
-                    <h2>🍵 茶葉來源</h2>
+                    <h2>茶葉來源</h2>
                     <p>我們深信,好茶來自於對品質的堅持。普門茶品嚴選台灣各地優質茶園的茶葉,從阿里山高山茶、凍頂烏龍到日月潭紅茶,每一款茶都經過嚴格的挑選與品鑑。</p>
                     <p>茶農們在海拔高度適宜、氣候條件優良的環境中,以傳統工法結合現代技術,用心栽培每一片茶葉。我們與茶農直接合作,確保茶葉的新鮮度與品質,讓您品嚐到最純粹的台灣茶香。</p>
-                    <p>無論是清香的綠茶、醇厚的烏龍,還是甘甜的紅茶,每一杯茶都承載著茶農的心血與大自然的恩賜。</p>
                 </div>
                 <div class="story-image">
                     <img src="https://images.unsplash.com/photo-1563882876-10a89c3b7e02?w=600" alt="茶葉來源">
@@ -476,10 +502,8 @@
 
             <div class="story-content">
                 <div class="story-text">
-                    <h2>🥗 餐點理念</h2>
+                    <h2>餐點理念</h2>
                     <p>普門茶品提供全素與蛋素的餐點選擇,所有食材皆嚴選自然、新鮮、無添加的優質原料。我們不使用人工添加物、味精或化學調味料,讓每一道菜都保有食材原本的美味與營養。</p>
-                    <p>從主菜到湯品,從麵食到便當,我們用心研發每一道料理,運用天然香料與烹調技巧,創造出層次豐富、風味獨特的素食佳餚。無論您是素食者或是想嘗試健康飲食的朋友,都能在這裡找到滿意的選擇。</p>
-                    <p>我們相信,素食不僅是一種飲食方式,更是一種對環境友善、對生命尊重的生活態度。</p>
                 </div>
                 <div class="story-image">
                     <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600" alt="餐點理念">
@@ -488,7 +512,6 @@
         </div>
     </section>
 
-    <!-- 核心價值 -->
     <section class="values-section">
         <div class="container">
             <h2 class="section-title">我們的核心價值</h2>
@@ -539,7 +562,6 @@
         </div>
     </section>
 
-    <!-- 店內環境 -->
     <section class="environment-section">
         <div class="container">
             <h2 class="section-title">店內環境</h2>
@@ -569,7 +591,6 @@
         </div>
     </section>
 
-    <!-- 發展歷程 -->
     <section class="timeline-section">
         <div class="container">
             <h2 class="section-title">發展歷程</h2>
@@ -610,7 +631,6 @@
         </div>
     </section>
 
-    <!-- 頁尾 -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -639,5 +659,19 @@
             </div>
         </div>
     </footer>
+    
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+    <df-messenger
+        location="us-central1"
+        project-id="digital-marketing-479301"
+        agent-id="b9f45bfb-6366-4da7-b420-28c2f5c82dc6"
+        language-code="zh-tw"
+        max-query-length="-1">
+        <df-messenger-chat-bubble
+            chat-title="🍵 普門線上客服">
+        </df-messenger-chat-bubble>
+    </df-messenger>
+    
 </body>
 </html>

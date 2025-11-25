@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>普門茶品 - 三峽素食茶藝館</title>
     <style>
+        /* === 1. 顏色變數與基礎設定 (維持不變) === */
+        :root {
+            --color-primary: #6a8c7b;   /* 主綠色：柔和、質感 */
+            --color-secondary: #a7b7a7; /* 輔助綠：淺灰綠 */
+            --color-accent: #d4a974;    /* 強調色：溫暖米棕色 */
+            --color-dark: #2c3e50;      /* 深色文字/標題 */
+            --color-light-text: #666;   /* 次要文字 */
+            --color-background: #fdfdfd; /* 輕微偏暖的背景色 */
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -18,13 +28,14 @@
 
         body {
             font-family: 'MyFont', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            line-height: 1.7; 
+            color: var(--color-dark);
+            background-color: var(--color-background);
         }
 
         /* 導航列 */
         nav {
-            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            background: var(--color-primary); 
             padding: 1rem 0;
             position: sticky;
             top: 0;
@@ -73,7 +84,7 @@
 
         /* 英雄區塊 */
         .hero {
-            background: linear-gradient(rgba(44, 95, 45, 0.7), rgba(44, 95, 45, 0.7)),
+            background: linear-gradient(rgba(44, 95, 45, 0.5), rgba(44, 95, 45, 0.5)),
                         url('https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=1200') center/cover;
             height: 600px;
             display: flex;
@@ -98,8 +109,8 @@
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
-            background: #97bc62;
-            color: white;
+            background: var(--color-accent); 
+            color: var(--color-dark);
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
@@ -108,7 +119,7 @@
         }
 
         .btn:hover {
-            background: #7da54e;
+            background: #c39665;
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
@@ -124,7 +135,7 @@
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            color: #2c5f2d;
+            color: var(--color-dark); 
             margin-bottom: 3rem;
             position: relative;
             padding-bottom: 1rem;
@@ -138,13 +149,13 @@
             transform: translateX(-50%);
             width: 100px;
             height: 3px;
-            background: #97bc62;
+            background: var(--color-primary); 
         }
 
         /* 關於區塊 */
         .about-section {
             padding: 5rem 0;
-            background: #f9f9f9;
+            background: var(--color-background); 
         }
 
         .about-content {
@@ -155,13 +166,13 @@
         }
 
         .about-text h3 {
-            color: #2c5f2d;
+            color: var(--color-primary); 
             font-size: 1.8rem;
             margin-bottom: 1rem;
         }
 
         .about-text p {
-            color: #666;
+            color: var(--color-light-text);
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 1rem;
@@ -187,6 +198,7 @@
         /* 特色區塊 */
         .features-section {
             padding: 5rem 0;
+            background: white; 
         }
 
         .features-grid {
@@ -197,39 +209,47 @@
         }
 
         .feature-card {
-            background: white;
+            background: var(--color-background);
             padding: 2rem;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
             transition: all 0.3s;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
+        
+        .feature-icon img {
+            width: 50px; 
+            height: 50px; 
+            object-fit: contain; 
+            display: block; 
+            margin: 0 auto;
+        }
 
         .feature-card h3 {
-            color: #2c5f2d;
+            color: var(--color-dark);
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
         .feature-card p {
-            color: #666;
+            color: var(--color-light-text);
             line-height: 1.6;
         }
 
         /* 熱門產品區塊 */
         .products-section {
             padding: 5rem 0;
-            background: #f9f9f9;
+            background: #f4f4f4; 
         }
 
         .products-grid {
@@ -272,18 +292,18 @@
         }
 
         .product-info h3 {
-            color: #2c5f2d;
+            color: var(--color-dark);
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
         }
 
         .product-info p {
-            color: #666;
+            color: var(--color-light-text);
             margin-bottom: 1rem;
         }
 
         .product-price {
-            color: #97bc62;
+            color: var(--color-primary); 
             font-size: 1.3rem;
             font-weight: bold;
         }
@@ -291,6 +311,7 @@
         /* 最新消息區塊 */
         .news-section {
             padding: 5rem 0;
+            background: white;
         }
 
         .news-grid {
@@ -300,32 +321,32 @@
         }
 
         .news-card {
-            background: white;
+            background: var(--color-background);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            border-left: 4px solid #97bc62;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--color-accent); 
         }
 
         .news-date {
-            color: #97bc62;
+            color: var(--color-accent); 
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
 
         .news-card h3 {
-            color: #2c5f2d;
+            color: var(--color-dark);
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
         }
 
         .news-card p {
-            color: #666;
+            color: var(--color-light-text);
         }
 
         /* 頁尾 */
         footer {
-            background: #2c5f2d;
+            background: var(--color-dark); 
             color: white;
             padding: 3rem 0 1rem;
         }
@@ -339,11 +360,11 @@
 
         .footer-section h3 {
             margin-bottom: 1rem;
-            color: #97bc62;
+            color: var(--color-accent); 
         }
 
         .footer-section p, .footer-section a {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
             display: block;
             margin-bottom: 0.5rem;
@@ -357,7 +378,7 @@
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.5);
         }
 
         .social-links {
@@ -379,7 +400,7 @@
         }
 
         .social-links a:hover {
-            background: #97bc62;
+            background: var(--color-primary);
             transform: translateY(-3px);
         }
 
@@ -402,22 +423,29 @@
                 grid-template-columns: 1fr;
             }
         }
-        .value-icon img {
-            /* 將寬高設定為您預期的表情符號大小，這裡以 40px 為例 */
-            width: 40px; 
-            height: 40px; 
+        
+        /* === Dialogflow Messenger 樣式覆寫 (Customization) === */
+        df-messenger {
+            z-index: 9999;
+            position: fixed;
             
-            /* 2. 保持圖片比例並確保在容器內完整顯示 */
-            object-fit: contain; 
+            /* 將 Chat Agent 的主要顏色設為強調色，讓它更醒目 */
+            --df-messenger-primary-color: var(--color-accent); 
+            --df-messenger-chat-background: var(--color-background); 
+            --df-messenger-message-user-background: var(--color-secondary); 
+            --df-messenger-message-bot-background: #fff; 
+            --df-messenger-font-color: var(--color-dark);
+            --df-messenger-font-family: 'MyFont', sans-serif;
             
-            /* 3. 確保圖片居中（如果 value-icon 容器有設定 text-align: center） */
-            display: block; 
-            margin: 0 auto; 
+            bottom: 30px;
+            right: 30px;
+            
+            /* 讓聊天氣泡增加陰影，更有立體感 */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
         }
     </style>
 </head>
 <body>
-    <!-- 導航列 -->
     <nav>
         <div class="container">
             <a href="index.html" class="logo">🍵 普門茶品</a>
@@ -430,7 +458,6 @@
         </div>
     </nav>
 
-    <!-- 英雄區塊 -->
     <section class="hero">
         <div class="hero-content">
             <div>
@@ -441,7 +468,6 @@
         </div>
     </section>
 
-    <!-- 關於區塊 -->
     <section class="about-section">
         <div class="container">
             <h2 class="section-title">關於普門茶品</h2>
@@ -459,7 +485,6 @@
         </div>
     </section>
 
-    <!-- 特色區塊 -->
     <section class="features-section">
         <div class="container">
             <h2 class="section-title">我們的特色</h2>
@@ -489,7 +514,6 @@
         </div>
     </section>
 
-    <!-- 熱門產品區塊 -->
     <section class="products-section">
         <div class="container">
             <h2 class="section-title">熱門推薦</h2>
@@ -531,7 +555,6 @@
         </div>
     </section>
 
-    <!-- 最新消息區塊 -->
     <section class="news-section">
         <div class="container">
             <h2 class="section-title">最新消息</h2>
@@ -550,7 +573,6 @@
         </div>
     </section>
 
-    <!-- 頁尾 -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -579,5 +601,18 @@
             </div>
         </div>
     </footer>
+
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+    <df-messenger
+        location="us-central1"
+        project-id="digital-marketing-479301"
+        agent-id="b9f45bfb-6366-4da7-b420-28c2f5c82dc6"
+        language-code="zh-tw"
+        max-query-length="-1">
+        <df-messenger-chat-bubble
+            chat-title="🍵 普門線上客服"> </df-messenger-chat-bubble>
+    </df-messenger>
+    
 </body>
 </html>
