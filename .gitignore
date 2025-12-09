@@ -1,0 +1,12 @@
+# Dependencies
+/node_modules
+/dist
+
+# Lock files
+package-lock.json
+npm-debug.log
+
+# IDEs and other ignored files
+.vscode/
+.env
+.DS_Store
