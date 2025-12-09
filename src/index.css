@@ -1,0 +1,316 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Iansui';
+  src: url('/fonts/Iansui-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* Color Palette from Original Design */
+    --background: 0 0% 99%;
+    --foreground: 210 29% 24%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 29% 24%;
+
+    --popover: 0 0% 99%;
+    --popover-foreground: 210 29% 24%;
+
+    /* Primary - Sage Green #6a8c7b */
+    --primary: 150 14% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Light Gray Green #a7b7a7 */
+    --secondary: 120 8% 68%;
+    --secondary-foreground: 210 29% 24%;
+
+    /* Accent - Warm Tan #d4a974 */
+    --accent: 34 53% 64%;
+    --accent-foreground: 210 29% 24%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 120 8% 80%;
+    --input: 120 8% 80%;
+    --ring: 150 14% 48%;
+
+    --radius: 0.625rem;
+
+    /* Custom Design Tokens */
+    --tea-primary: 150 14% 48%;
+    --tea-secondary: 120 8% 68%;
+    --tea-accent: 34 53% 64%;
+    --tea-dark: 210 29% 24%;
+    --tea-light-text: 0 0% 40%;
+    --tea-background: 0 0% 99%;
+    --tea-gray-bg: 0 0% 96%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55));
+    --gradient-header: linear-gradient(rgba(106, 140, 123, 0.85), rgba(106, 140, 123, 0.85));
+
+    /* Shadows */
+    --shadow-soft: 0 5px 20px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 5px 20px rgba(0, 0, 0, 0.1);
+    --shadow-elevated: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --shadow-nav: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    /* Sidebar defaults */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 29% 10%;
+    --foreground: 0 0% 95%;
+
+    --card: 210 25% 14%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 210 29% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 150 14% 55%;
+    --primary-foreground: 210 29% 10%;
+
+    --secondary: 120 8% 25%;
+    --secondary-foreground: 0 0% 95%;
+
+    --accent: 34 45% 55%;
+    --accent-foreground: 210 29% 10%;
+
+    --muted: 210 20% 18%;
+    --muted-foreground: 0 0% 60%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 20% 25%;
+    --input: 210 20% 25%;
+    --ring: 150 14% 55%;
+
+    --tea-primary: 150 14% 55%;
+    --tea-secondary: 120 8% 35%;
+    --tea-accent: 34 45% 55%;
+    --tea-dark: 0 0% 90%;
+    --tea-light-text: 0 0% 65%;
+    --tea-background: 210 29% 10%;
+    --tea-gray-bg: 210 20% 15%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html, body, #root {
+    @apply h-full;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Iansui', 'Noto Sans TC', sans-serif;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Iansui', 'Noto Serif TC', serif;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply text-4xl font-semibold text-center text-foreground relative pb-4 mb-12;
+  }
+
+  .section-title::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-[3px] bg-primary rounded-full;
+  }
+
+  .feature-card {
+    @apply bg-background rounded-lg p-8 text-center transition-all duration-300;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .feature-card:hover {
+    @apply -translate-y-1;
+    box-shadow: var(--shadow-medium);
+  }
+
+  .menu-card {
+    @apply bg-card rounded-lg overflow-hidden transition-all duration-300;
+    box-shadow: var(--shadow-medium);
+  }
+
+  .menu-card:hover {
+    @apply -translate-y-1;
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .btn-primary {
+    @apply inline-block px-10 py-4 bg-accent text-foreground font-bold rounded-full transition-all duration-300;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-primary:hover {
+    @apply -translate-y-1;
+    background: hsl(34, 45%, 58%);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-secondary {
+    @apply inline-block px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg transition-all duration-300;
+  }
+
+  .btn-secondary:hover {
+    @apply -translate-y-1;
+    box-shadow: var(--shadow-medium);
+  }
+
+  .nav-link {
+    @apply text-white font-medium transition-all duration-300 px-4 py-2 rounded-md;
+  }
+
+  .nav-link:hover {
+    @apply bg-white/20 -translate-y-0.5;
+  }
+
+  .news-card {
+    @apply bg-background p-8 rounded-lg border-l-4 border-accent;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .page-header {
+    @apply py-20 text-center text-white;
+    background: var(--gradient-header), url('https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=1200') center/cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in-delay-1 {
+    animation: fadeIn 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-delay-2 {
+    animation: fadeIn 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-delay-3 {
+    animation: fadeIn 0.8s ease-out 0.6s forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Dialogflow Messenger Styles */
+df-messenger {
+  z-index: 9999;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  top: auto !important;
+  /* 使用新版網站的主題配色 */
+  --df-messenger-primary-color: hsl(var(--accent));
+  --df-messenger-chat-background: hsl(var(--card));
+  --df-messenger-message-user-background: hsl(var(--secondary));
+  --df-messenger-message-bot-background: hsl(var(--background));
+  --df-messenger-font-color: hsl(var(--foreground));
+  box-shadow: var(--shadow-medium);
+}

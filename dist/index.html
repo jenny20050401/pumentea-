@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>普門茶品 - 三峽素食茶藝館</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      df-messenger {
+        z-index: 9999;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        /* 使用新版網站的主題配色 */
+        --df-messenger-primary-color: #d4a974; /* Accent (暖棕色) */
+        --df-messenger-chat-background: #fdfdfd;
+        --df-messenger-message-user-background: #a7b7a7; /* Secondary (淺綠) */
+        --df-messenger-message-bot-background: #ffffff;
+        --df-messenger-font-color: #2c3e50;
+        /* 讓氣泡有點陰影 */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-CLmjgNUJ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bzhm-jI7.css">
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+    <df-messenger
+        location="us-central1"
+        project-id="digital-marketing-479301"
+        agent-id="b9f45bfb-6366-4da7-b420-28c2f5c82dc6"
+        language-code="zh-tw"
+        max-query-length="-1">
+        <df-messenger-chat-bubble
+            chat-title="🍵 普門線上客服">
+        </df-messenger-chat-bubble>
+    </df-messenger>
+  </body>
+</html>
