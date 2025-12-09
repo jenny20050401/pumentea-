@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import Header from "@/components/Header";
 import setMeal from "@/assets/set-meal.jpg";
 import curryNoodles from "@/assets/curry-noodles.jpg";
 import teaTasting from "@/assets/tea-tasting.jpg";
@@ -143,7 +142,6 @@ const Products = () => {
 
   return (
     <div className="min-h-screen bg-muted">
-      <Header />
       <main>
         {/* Page Header */}
         <section

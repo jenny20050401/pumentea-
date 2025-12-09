@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Header from "@/components/Header";
 import { MapPin, Phone, Clock, Users, Utensils, CreditCard, Car, Bus, Train } from "lucide-react";
 import storeHeaderBg from "@/assets/sanxia-relaxing-tea-house-ambience.jpg";
 
@@ -13,7 +12,6 @@ const Store = () => {
 
   return (
     <div className="min-h-screen bg-muted">
-      <Header />
       <main>
         {/* Page Header */}
         <section

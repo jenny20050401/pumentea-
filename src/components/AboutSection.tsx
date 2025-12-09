@@ -1,5 +1,6 @@
 import storeInterior from "@/assets/sanxia-pumen-tea-house-counter.webp";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { Link } from "react-router-dom";
 
 const AboutSection = () => {
   const { ref: sectionRef, isVisible } = useIntersectionObserver<HTMLElement>({ threshold: 0.2 });
@@ -28,12 +29,12 @@ const AboutSection = () => {
             <p className="text-foreground/80 leading-relaxed text-lg">
               在這裡，您可以在安靜舒適的空間中放慢步調，無論是想好好品茶、享用素食、與朋友相聚，或是獨自休息片刻，普門茶品都歡迎您前來坐坐。
             </p>
-            <a
-              href="#contact"
+            <Link
+              to="/about"
               className="btn-secondary inline-flex mt-4"
             >
               了解更多
-            </a>
+            </Link>
           </div>
 
           {/* Image */}
