@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom"; // 使用 Link 和 useLocation
+import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/sanxia-pumen-tea-logo.jpg";
 
 const navItems = [
   { label: "首頁", href: "/" },
   { label: "關於我們", href: "/about" },
   { label: "產品", href: "/products" },
-  { label: "門市資訊", href: "/store" }, // 新增這行
+  { label: "門市資訊", href: "/store" },
 ];
 
 const Header = () => {
@@ -23,9 +23,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 判斷是否為首頁 (首頁使用 href="#id" 滾動，其他頁面使用 Link 跳轉)
-  const isHome = location.pathname === "/";
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -37,7 +34,11 @@ const Header = () => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
-          <img src={logo} alt="普門茶品 Logo" className="w-10 h-10 rounded-full object-cover transition-transform duration-300 group-hover:scale-110" />
+          <img 
+            src={logo} 
+            alt="普門茶品 Logo" 
+            className="w-10 h-10 rounded-full object-cover transition-transform duration-300 group-hover:scale-110" 
+          />
           <span className={`font-serif text-xl font-semibold transition-colors duration-300 ${
             isScrolled ? "text-foreground" : "text-primary-foreground"
           }`}>
@@ -45,7 +46,7 @@ const Header = () => {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation (電腦版選單) */}
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
              <Link
@@ -60,7 +61,7 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button (手機版漢堡選單按鈕) */}
         <button
           className="md:hidden p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -73,9 +74,9 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu (手機版展開後的選單 - 這裡改了背景色和文字顏色) */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-md shadow-medium transition-all duration-300 ${
+        className={`md:hidden absolute top-full left-0 right-0 bg-white backdrop-blur-md shadow-medium transition-all duration-300 ${
           isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
@@ -84,7 +85,7 @@ const Header = () => {
             <Link
               key={item.label}
               to={item.href}
-              className="text-foreground/80 hover:text-primary font-medium py-2 transition-colors"
+              className="text-gray-800 hover:text-primary font-medium py-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.label}

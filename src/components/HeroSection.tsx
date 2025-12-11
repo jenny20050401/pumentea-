@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-tea.jpg";
 
 const HeroSection = () => {
@@ -43,10 +44,10 @@ const HeroSection = () => {
             在寧靜的茶香中，品味精緻素食佳餚，感受身心的放鬆與沉澱
           </p>
 
-          {/* CTA Button */}
+          {/* CTA Button - Modified to use Link */}
           <div className="animate-fade-in-delay-3">
-            <a
-              href="#menu"
+            <Link
+              to="/products"
               className="inline-flex items-center gap-3 px-10 py-4 bg-tea-terracotta text-primary-foreground font-medium rounded-full transition-all duration-300 hover:bg-tea-terracotta/90 hover:shadow-elevated hover:scale-105"
             >
               探索菜單
@@ -63,7 +64,7 @@ const HeroSection = () => {
                   d="M19 9l-7 7-7-7"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
