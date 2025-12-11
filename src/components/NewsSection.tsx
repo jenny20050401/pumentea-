@@ -3,10 +3,10 @@ import { Calendar, Clock } from "lucide-react";
 
 const newsItems = [
   {
-    date: "2025年10月",
+    date: "2月19日 - 2月26日", // 修正了海報上可能的日期順序，設定為2月期間
     icon: Calendar,
-    title: "秋季新品上市",
-    description: "秋季限定素食套餐與季節茶品現正供應中，歡迎蒞臨品嚐！",
+    title: "🧧新春茶禧：茶香迎客四季春，福滿家園八方來！",
+    description: "含三款職人嚴選好茶（烏龍/紅茶/焙火茶）與三道精選素食料理，每晚 19:00 邀您共賞。(費用：$600/人、$1000/雙人)",
   },
   {
     date: "營業時間",
